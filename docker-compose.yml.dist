@@ -1,0 +1,58 @@
+version: '3.9'
+
+services:
+  laperillatxt-web:
+    container_name: laperillatxt-web
+    build:
+      context: ./docker/nginx
+      args:
+        UID: $U_ID
+    ports:
+      - 1000:80
+    volumes:
+      - ./public:/appdata/www/public
+    depends_on:
+      - laperillatxt-be
+    networks:
+      - laperillatxt-network
+
+  laperillatxt-be:
+    container_name: laperillatxt-be
+    build:
+      context: ./docker/php
+      args:
+        UID: $U_ID
+    volumes:
+      - ./:/appdata/www
+    ###> XDEBUG 3 ###
+    # Use your client IP here
+    # Linux: run "ip a | grep docker0"
+    # Windows (with WSL2) and Mac: host.docker.internal
+    environment:
+      XDEBUG_CLIENT_HOST: 172.17.0.1
+      XDEBUG_CLIENT_PORT: 9003
+      PHP_IDE_CONFIG: serverName=laperillatxt
+    networks:
+      - laperillatxt-network
+
+  laperillatxt-db:
+    container_name: laperillatxt-db
+    build:
+      context: ./docker/database
+    ports:
+      - 10000:3306
+    environment:
+      MYSQL_DATABASE: laperillatxt_database
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - laperillatxt-db-data:/var/lib/mysql
+    networks:
+      - laperillatxt-network
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+
+volumes:
+  laperillatxt-db-data:
+
+networks:
+  laperillatxt-network:
+    external: true
