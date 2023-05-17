@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
-    <entity name="App\Entity\Txt" table="txt">
+    <entity name="Txt\Infrastructure\Database\ORM\Doctrine\Entity\DoctrineTxt" table="txt">
         <id name="id" type="string" length="36"/>
         <id name="title" type="string" length="100"/>
         <id name="text" type="string" length="500"/>

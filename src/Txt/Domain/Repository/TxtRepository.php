@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Repository;
+namespace Txt\Domain\Repository;
 
-use App\Entity\Txt;
+use Txt\Domain\Model\Txt;
 
 interface TxtRepository
 {
