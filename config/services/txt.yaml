@@ -1,0 +1,17 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Txt\:
+    resource: '../../src/Txt/'
+    exclude:
+      - '../../src/Domain/Entity/'
+      - '../../src/Txt/Infrastructure/Database/ORM/Doctrine/Entity/'
+      - '../../src/Kernel.php'
+      - '../../src/Tests/'
+
+
+  Txt\Infrastructure\Controller\:
+    resource: '../../src/Txt/Infrastructure/Controller/'
+    tags: [ 'controller.service_arguments' ]
