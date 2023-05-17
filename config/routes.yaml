@@ -1,10 +1,9 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
-
-health_check:
-    path: /health-check
-    controller: App\Controller\HealthCheckController
+txt_health_check:
+    path: /txt/health-check
+    controller: Txt\Infrastructure\Controller\HealthCheckController
     methods: [ GET ]
+
+create_txt:
+    path: /txt/create
+    controller: Txt\Infrastructure\Controller\Txt\CreateTxtController
+    methods: [ POST ]
