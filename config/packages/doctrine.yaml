@@ -15,7 +15,7 @@ doctrine:
                 is_bundle: false
                 type: xml
                 dir: '%kernel.project_dir%/src/Txt/Infrastructure/Database/ORM/Doctrine/mapping'
-                prefix: 'Txt\Infrastructure\Database\ORM\Doctrine\Entity'
+                prefix: 'Txt\Domain\Model'
                 alias: Txt
 
 when@test:

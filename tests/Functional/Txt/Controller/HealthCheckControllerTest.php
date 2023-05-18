@@ -11,7 +11,7 @@ class HealthCheckControllerTest extends TxtControllerTestBase
 {
     private const ENDPOINT = '/txt/health-check';
 
-    public function testCustomerHealthCheck(): void
+    public function testTxtHealthCheck(): void
     {
         self::$client->request(Request::METHOD_GET, self::ENDPOINT);
 

@@ -6,8 +6,7 @@ services:
   Txt\:
     resource: '../../src/Txt/'
     exclude:
-      - '../../src/Domain/Entity/'
-      - '../../src/Txt/Infrastructure/Database/ORM/Doctrine/Entity/'
+      - '../../src/Txt/Domain/Model/'
       - '../../src/Kernel.php'
       - '../../src/Tests/'
 
