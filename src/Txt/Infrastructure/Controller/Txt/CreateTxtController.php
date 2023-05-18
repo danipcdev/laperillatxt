@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Txt\Infrastructure\Controller\Txt;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Txt\Application\CreateTxt\CreateTxt;
 use Txt\Application\CreateTxt\DTO\CreateTxtInputDTO;
+use Txt\Infrastructure\DTO\CreateTxtRequestDTO;
 
 readonly class CreateTxtController
 {
@@ -16,11 +16,9 @@ readonly class CreateTxtController
     {
     }
 
-    public function __invoke(Request $request): Response
+    public function __invoke(CreateTxtRequestDTO $request): Response
     {
-        $data = \json_decode($request->getContent(), true);
-
-        $responseDTO = $this->service->__invoke(CreateTxtInputDTO::create($data['title'], $data['text']));
+        $responseDTO = $this->service->__invoke(CreateTxtInputDTO::create($request->title, $request->text));
 
         return new JsonResponse(['txtId' => $responseDTO->id], Response::HTTP_CREATED);
     }
