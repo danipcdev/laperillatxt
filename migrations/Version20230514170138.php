@@ -18,7 +18,7 @@ final class Version20230514170138 extends AbstractMigration
     {
         $this->addSql(
             <<<SQL
-                CREATE TABLE `laperillatxt_database`.`txt` (
+                CREATE TABLE `txt` (
                     `id` CHAR(36) PRIMARY KEY NOT NULL,
                     `title` VARCHAR(100) NOT NULL,
                     `text` VARCHAR(500) NOT NULL,
@@ -32,7 +32,7 @@ final class Version20230514170138 extends AbstractMigration
     {
         $this->addSql(
             <<<SQL
-                DROP TABLE `laperillatxt_database`.`txt`;
+                DROP TABLE `txt`;
             SQL
         );
     }
