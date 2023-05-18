@@ -31,13 +31,17 @@ build: ## Rebuilds all the containers
 prepare: ## Runs backend commands
 	$(MAKE) composer-install
 	$(MAKE) migrations
+	$(MAKE) migrations-test
 
 # Backend commands
 composer-install: ## Installs composer dependencies
 	U_ID=${UID} docker exec --user ${UID} ${DOCKER_BE} composer install --no-interaction
 
-migrations: ## Installs composer dependencies
+migrations: ## Run migrations for dev/prod environments
 	U_ID=${UID} docker exec --user ${UID} ${DOCKER_BE} bin/console doctrine:migration:migrate -n --allow-no-migration
+
+migrations-test: ## Run migrations for test environment
+	U_ID=${UID} docker exec --user ${UID} ${DOCKER_BE} bin/console doctrine:migration:migrate -n --env=test	 --allow-no-migration
 
 be-logs: ## Tails the Symfony dev log
 	U_ID=${UID} docker exec --user ${UID} ${DOCKER_BE} tail -f var/log/dev.log
@@ -49,4 +53,4 @@ ssh-be: ## bash into the be container
 code-style: ## Runs php-cs to fix code styling following Symfony rules
 	U_ID=${UID} docker exec --user ${UID} ${DOCKER_BE} php-cs-fixer fix src --rules=@Symfony
 
-.PHONY: migrations
+.PHONY: migrations migrations-test
