@@ -7,3 +7,8 @@ create_txt:
     path: /txt/create
     controller: Txt\Infrastructure\Controller\Txt\CreateTxtController
     methods: [ POST ]
+
+get_txt_by_id:
+    path: /txt/{id}
+    controller: Txt\Infrastructure\Controller\Txt\GetTxtByIdController
+    methods: [ GET ]

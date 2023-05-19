@@ -8,5 +8,7 @@ use Txt\Domain\Model\Txt;
 
 interface TxtRepository
 {
+    public function findOneByIdOrFail(string $id): Txt;
+
     public function save(Txt $txt): void;
 }

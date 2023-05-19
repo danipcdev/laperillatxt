@@ -4,21 +4,31 @@ declare(strict_types=1);
 
 namespace Txt\Infrastructure\Database\ORM\Doctrine\Repository;
 
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Bundle\DoctrineBundle\Repository\LazyServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
+use Txt\Domain\Exception\ResourceNotFoundException;
 use Txt\Domain\Model\Txt;
 use Txt\Domain\Repository\TxtRepository;
 
 readonly class DoctrineTxtRepository implements TxtRepository
 {
-    private ServiceEntityRepository $repository;
+    private LazyServiceEntityRepository $repository;
     private ObjectManager $manager;
 
     public function __construct(ManagerRegistry $managerRegistry)
     {
-        $this->repository = new ServiceEntityRepository($managerRegistry, Txt::class);
+        $this->repository = new LazyServiceEntityRepository($managerRegistry, Txt::class);
         $this->manager = $managerRegistry->getManager();
+    }
+
+    public function findOneByIdOrFail(string $id): Txt
+    {
+        if (null === $txt = $this->repository->findOneBy(['id' => $id])) {
+            throw ResourceNotFoundException::createFromClassAndId(Txt::class, $id);
+        }
+
+        return $txt;
     }
 
     public function save(Txt $txt): void
