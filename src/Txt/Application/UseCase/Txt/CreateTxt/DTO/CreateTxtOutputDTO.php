@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Txt\Application\CreateTxt\DTO;
+namespace Txt\Application\UseCase\Txt\CreateTxt\DTO;
 
 readonly class CreateTxtOutputDTO
 {

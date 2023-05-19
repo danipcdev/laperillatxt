@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Txt\Application\CreateTxt;
+namespace Txt\Application\UseCase\Txt\CreateTxt;
 
-use Txt\Application\CreateTxt\DTO\CreateTxtInputDTO;
-use Txt\Application\CreateTxt\DTO\CreateTxtOutputDTO;
+use Txt\Application\UseCase\Txt\CreateTxt\DTO\CreateTxtInputDTO;
+use Txt\Application\UseCase\Txt\CreateTxt\DTO\CreateTxtOutputDTO;
 use Txt\Domain\Model\Txt;
 use Txt\Domain\Repository\TxtRepository;
 use Txt\Domain\ValueObject\Uuid;
@@ -16,7 +16,7 @@ readonly class CreateTxt
     {
     }
 
-    public function __invoke(CreateTxtInputDTO $dto): CreateTxtOutputDTO
+    public function handle(CreateTxtInputDTO $dto): CreateTxtOutputDTO
     {
         $txt = new Txt(Uuid::random()->value(), $dto->title, $dto->text);
 
