@@ -2,7 +2,7 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
     <entity name="Txt\Domain\Model\Txt" table="txt">
         <id name="id" type="string" length="36"/>
-        <id name="title" type="string" length="100"/>
-        <id name="text" type="string" length="500"/>
+        <field name="title" type="string" length="100"/>
+        <field name="text" type="string" length="500"/>
     </entity>
 </doctrine-mapping>
