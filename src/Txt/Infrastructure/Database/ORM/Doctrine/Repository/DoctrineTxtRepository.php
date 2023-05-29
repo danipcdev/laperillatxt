@@ -24,7 +24,7 @@ readonly class DoctrineTxtRepository implements TxtRepository
 
     public function findOneByIdOrFail(string $id): Txt
     {
-        if (null === $txt = $this->repository->findOneBy(['id' => $id])) {
+        if (null === $txt = $this->repository->find($id)) {
             throw ResourceNotFoundException::createFromClassAndId(Txt::class, $id);
         }
 
