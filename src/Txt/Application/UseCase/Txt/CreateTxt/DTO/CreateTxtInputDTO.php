@@ -5,45 +5,31 @@ declare(strict_types=1);
 namespace Txt\Application\UseCase\Txt\CreateTxt\DTO;
 
 use Txt\Domain\Exception\InvalidArgumentException;
+use Txt\Domain\Validation\Traits\AssertNotNullTrait;
 
 readonly class CreateTxtInputDTO
 {
-    private const         VALUES = [
+    use AssertNotNullTrait;
+
+    private const ARGS = [
         'title',
         'text',
     ];
 
     private function __construct(
-        public string $title,
-        public string $text,
+        public ?string $title,
+        public ?string $text,
     ) {
+        $this->assertNotNull(self::ARGS, [$this->title, $this->text]);
+        $this->assertTitleLength($this->title);
     }
 
     public static function create(?string $title, ?string $text): self
     {
-        static::validateFields(\func_get_args());
-        static::validateTitleLength($title);
-
         return new static($title, $text);
     }
 
-    private static function validateFields(array $fields): void
-    {
-        $values = \array_combine(self::VALUES, $fields);
-
-        $emptyValues = [];
-        foreach ($values as $key => $value) {
-            if (\is_null($value)) {
-                $emptyValues[] = $key;
-            }
-        }
-
-        if (!empty($emptyValues)) {
-            throw InvalidArgumentException::createFromArray($emptyValues);
-        }
-    }
-
-    private static function validateTitleLength(string $title): void
+    private function assertTitleLength(string $title): void
     {
         if (\strlen($title) < 2 || \strlen($title) > 40) {
             throw InvalidArgumentException::createFromArgument('title');
