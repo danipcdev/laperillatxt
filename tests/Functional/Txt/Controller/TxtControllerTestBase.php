@@ -6,10 +6,14 @@ namespace App\Tests\Functional\Txt\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\AbstractBrowser;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class TxtControllerTestBase extends WebTestCase
 {
+    protected const CREATE_TXT_ENDPOINT = '/txt/create';
+    protected const NON_EXISTING_TXT_ID = 'e0a1878f-dd52-4eea-959d-96f589a9f234';
+
     protected static ?AbstractBrowser $client = null;
 
     public function setUp(): void
@@ -22,6 +26,25 @@ class TxtControllerTestBase extends WebTestCase
 
     protected function getResponseData(Response $response): array
     {
-        return (array) \json_decode($response->getContent(), true, 512, \JSON_THROW_ON_ERROR);
+        try {
+            return \json_decode($response->getContent(), true);
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
+    protected function createTxt(): string
+    {
+        $payload = [
+            'title' => 'Txt de prueba',
+            'text' => 'Texto del txt de prueba',
+        ];
+
+        self::$client->request(Request::METHOD_POST, self::CREATE_TXT_ENDPOINT, [], [], [], \json_encode($payload));
+
+        $response = self::$client->getResponse();
+        $responseData = $this->getResponseData($response);
+
+        return $responseData['txtId'];
     }
 }
