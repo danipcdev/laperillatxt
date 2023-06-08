@@ -6,11 +6,16 @@ namespace Txt\Domain\Model;
 
 class Txt
 {
-    public function __construct(
+    private function __construct(
         private readonly string $id,
         private string $title,
         private string $text,
     ) {
+    }
+
+    public static function create(string $id, string $title, string $text): self
+    {
+        return new static($id, $title, $text);
     }
 
     public function id(): string

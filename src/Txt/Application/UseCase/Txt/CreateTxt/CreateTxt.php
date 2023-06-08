@@ -18,7 +18,7 @@ readonly class CreateTxt
 
     public function handle(CreateTxtInputDTO $dto): CreateTxtOutputDTO
     {
-        $txt = new Txt(Uuid::random()->value(), $dto->title, $dto->text);
+        $txt = Txt::create(Uuid::random()->value(), $dto->title, $dto->text);
 
         $this->repository->save($txt);
 
