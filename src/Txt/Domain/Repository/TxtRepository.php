@@ -11,4 +11,6 @@ interface TxtRepository
     public function findOneByIdOrFail(string $id): Txt;
 
     public function save(Txt $txt): void;
+
+    public function remove(Txt $txt): void;
 }

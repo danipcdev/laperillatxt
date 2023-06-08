@@ -36,4 +36,10 @@ readonly class DoctrineTxtRepository implements TxtRepository
         $this->manager->persist($txt);
         $this->manager->flush();
     }
+
+    public function remove(Txt $txt): void
+    {
+        $this->manager->remove($txt);
+        $this->manager->flush();
+    }
 }

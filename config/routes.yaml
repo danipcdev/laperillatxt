@@ -12,3 +12,8 @@ get_txt_by_id:
     path: /txt/{id}
     controller: Txt\Infrastructure\Controller\Txt\GetTxtByIdController
     methods: [ GET ]
+
+delete_txt:
+    path: /txt/{id}
+    controller: Txt\Infrastructure\Controller\Txt\DeleteTxtController
+    methods: [ DELETE ]
