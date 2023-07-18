@@ -17,3 +17,23 @@ delete_txt:
     path: /txt/{id}
     controller: Txt\Infrastructure\Controller\Txt\DeleteTxtController
     methods: [ DELETE ]
+
+type_health_check:
+    path: /type/health-check
+    controller: Type\Infrastructure\Controller\HealthCheckController
+    methods: [ GET ]
+
+create_type:
+    path: /type/create
+    controller: Type\Infrastructure\Controller\Type\CreateTypeController
+    methods: [ POST ]
+
+get_type_by_id:
+    path: /type/{id}
+    controller: Type\Infrastructure\Controller\Type\GetTypeByIdController
+    methods: [ GET ]
+
+delete_type:
+    path: /type/{id}
+    controller: Type\Infrastructure\Controller\Type\DeleteTypeController
+    methods: [ DELETE ]

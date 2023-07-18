@@ -10,13 +10,6 @@ doctrine:
         enable_lazy_ghost_objects: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
-        mappings:
-            Txt:
-                is_bundle: false
-                type: xml
-                dir: '%kernel.project_dir%/src/Txt/Infrastructure/Database/ORM/Doctrine/mapping'
-                prefix: 'Txt\Domain\Model'
-                alias: Txt
 
 when@test:
     doctrine:
