@@ -1,0 +1,13 @@
+doctrine:
+    orm:
+        mappings:
+            Type:
+                type: xml
+                dir: "%kernel.project_dir%/src/Type/Infrastructure/Database/ORM/Doctrine/mapping"
+                prefix: Type\Domain\Model
+                is_bundle: false
+framework:
+    serializer:
+        mapping:
+            paths:
+                - '%kernel.project_dir%/src/Type/Infrastructure/Database/ORM/serializer-native'

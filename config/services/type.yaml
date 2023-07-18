@@ -1,0 +1,16 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Type\:
+    resource: '../../src/Type/'
+    exclude:
+      - '../../src/Type/Domain/Model/'
+      - '../../src/Kernel.php'
+      - '../../src/Tests/'
+
+
+  Type\Infrastructure\Controller\:
+    resource: '../../src/Type/Infrastructure/Controller/'
+    tags: [ 'controller.service_arguments' ]
