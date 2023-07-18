@@ -4,18 +4,21 @@ declare(strict_types=1);
 
 namespace Txt\Domain\Model;
 
+use Type\Domain\Model\Type;
+
 class Txt
 {
     private function __construct(
         private readonly string $id,
         private string $title,
         private string $text,
+        private Type $type,
     ) {
     }
 
-    public static function create(string $id, string $title, string $text): self
+    public static function create(string $id, string $title, string $text, Type $type): self
     {
-        return new static($id, $title, $text);
+        return new static($id, $title, $text, $type);
     }
 
     public function id(): string
@@ -41,5 +44,15 @@ class Txt
     public function setText(string $text): void
     {
         $this->text = $text;
+    }
+
+    public function type(): Type
+    {
+        return $this->type;
+    }
+
+    public function setType(Type $type): void
+    {
+        $this->type = $type;
     }
 }

@@ -6,6 +6,7 @@ namespace Txt\Application\UseCase\Txt\CreateTxt\DTO;
 
 use Txt\Domain\Exception\InvalidArgumentException;
 use Txt\Domain\Validation\Traits\AssertNotNullTrait;
+use Type\Domain\Model\Type;
 
 readonly class CreateTxtInputDTO
 {
@@ -14,19 +15,21 @@ readonly class CreateTxtInputDTO
     private const ARGS = [
         'title',
         'text',
+        'type',
     ];
 
     private function __construct(
         public ?string $title,
         public ?string $text,
+        public ?Type $type,
     ) {
-        $this->assertNotNull(self::ARGS, [$this->title, $this->text]);
+        $this->assertNotNull(self::ARGS, [$this->title, $this->text, $this->type]);
         $this->assertTitleLength($this->title);
     }
 
-    public static function create(?string $title, ?string $text): self
+    public static function create(?string $title, ?string $text, ?Type $type): self
     {
-        return new static($title, $text);
+        return new static($title, $text, $type);
     }
 
     private function assertTitleLength(string $title): void
