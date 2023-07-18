@@ -17,9 +17,12 @@ class CreateTxtControllerTest extends TxtControllerTestBase
         $payload = [
             'title' => 'Prueba desde test',
             'text' => 'Prueba desde test',
+            'typeId' => '2ac51729-8e25-4021-85af-437282ed46f5',
         ];
 
-        self::$client->request(Request::METHOD_POST, self::ENDPOINT, [], [], [], \json_encode($payload));
+        $json = \json_encode($payload);
+
+        self::$client->request(Request::METHOD_POST, self::ENDPOINT, [], [], [], $json);
 
         $response = self::$client->getResponse();
         $responseData = $this->getResponseData($response);

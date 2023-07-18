@@ -14,6 +14,8 @@ class TxtControllerTestBase extends WebTestCase
     protected const CREATE_TXT_ENDPOINT = '/txt/create';
     protected const NON_EXISTING_TXT_ID = 'e0a1878f-dd52-4eea-959d-96f589a9f234';
 
+    protected const CREATE_TYPE_ENDPOINT = '/type/create';
+
     protected static ?AbstractBrowser $client = null;
 
     public function setUp(): void
@@ -46,5 +48,19 @@ class TxtControllerTestBase extends WebTestCase
         $responseData = $this->getResponseData($response);
 
         return $responseData['txtId'];
+    }
+
+    protected function createType(): string
+    {
+        $payload = [
+            'name' => 'Microrrelato',
+        ];
+
+        self::$client->request(Request::METHOD_POST, self::CREATE_TYPE_ENDPOINT, [], [], [], \json_encode($payload));
+
+        $response = self::$client->getResponse();
+        $responseData = $this->getResponseData($response);
+
+        return $responseData['typeId'];
     }
 }
