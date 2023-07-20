@@ -8,6 +8,9 @@ use Type\Domain\Model\Type;
 
 class Txt
 {
+    public const TITLE_MIN_LENGTH = 2;
+    public const TITLE_MAX_LENGTH = 40;
+
     private function __construct(
         private readonly string $id,
         private string $title,
