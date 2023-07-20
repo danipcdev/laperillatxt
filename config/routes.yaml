@@ -18,6 +18,11 @@ delete_txt:
     controller: Txt\Infrastructure\Controller\Txt\DeleteTxtController
     methods: [ DELETE ]
 
+update_txt:
+    path: /txt/{id}
+    controller: Txt\Infrastructure\Controller\Txt\UpdateTxtController
+    methods: [ PATCH ]
+
 type_health_check:
     path: /type/health-check
     controller: Type\Infrastructure\Controller\HealthCheckController
