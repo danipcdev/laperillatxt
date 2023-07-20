@@ -42,3 +42,8 @@ delete_type:
     path: /type/{id}
     controller: Type\Infrastructure\Controller\Type\DeleteTypeController
     methods: [ DELETE ]
+
+update_type:
+    path: /type/{id}
+    controller: Type\Infrastructure\Controller\Type\UpdateTypeController
+    methods: [ PATCH ]

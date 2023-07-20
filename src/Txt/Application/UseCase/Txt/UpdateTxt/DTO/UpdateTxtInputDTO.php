@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Txt\Application\UseCase\Txt\UpdateTxt\DTO;
 
-use Domain\Validation\Traits\AssertLengthRangeTrait;
+use Txt\Domain\Validation\Traits\AssertLengthRangeTrait;
 use Txt\Domain\Model\Txt;
 use Txt\Domain\Validation\Traits\AssertNotNullTrait;
 use Type\Domain\Model\Type;
