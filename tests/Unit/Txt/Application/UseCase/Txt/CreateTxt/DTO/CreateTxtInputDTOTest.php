@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\Txt\Application\UseCase\Txt\CreateTxt\DTO;
+namespace Tests\Unit\Txt\Application\UseCase\Txt\CreateTxt\DTO;
 
 use Txt\Application\UseCase\Txt\CreateTxt\DTO\CreateTxtInputDTO;
 use Txt\Domain\Exception\InvalidArgumentException;
@@ -42,7 +42,7 @@ class CreateTxtInputDTOTest extends TestCase
     public function testTitleLengthIsGreaterThan2(): void
     {
         self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage('Invalid argument [title]');
+        self::expectExceptionMessage('Value must be min [2] and max [40] characters');
 
         CreateTxtInputDTO::create(
             'A',
@@ -53,9 +53,9 @@ class CreateTxtInputDTOTest extends TestCase
     public function testTitleLengthIsLessThan40(): void
     {
         self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage('Invalid argument [title]');
+        self::expectExceptionMessage('Value must be min [2] and max [40] characters');
 
-        CreateTxtInputDTO::create(
+        UpdateTxtInputDTO::create(
             'asdfghrtyuiasdfghrtyuiasdfghrtyuiasdfghrtyui',
             self::VALUES['text'],
         );

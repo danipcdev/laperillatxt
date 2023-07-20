@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\Txt\Application\UseCase\Txt\CreateTxt;
+namespace Tests\Unit\Txt\Application\UseCase\Txt\CreateTxt;
 
 use Txt\Application\UseCase\Txt\CreateTxt\CreateTxt;
 use Txt\Application\UseCase\Txt\CreateTxt\DTO\CreateTxtInputDTO;
