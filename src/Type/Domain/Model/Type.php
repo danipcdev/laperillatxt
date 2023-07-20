@@ -6,6 +6,9 @@ namespace Type\Domain\Model;
 
 class Type
 {
+    public const NAME_MIN_LENGTH = 2;
+    public const NAME_MAX_LENGTH = 30;
+
     private function __construct(
         private string $id,
         private string $name,
