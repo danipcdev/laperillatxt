@@ -38,6 +38,11 @@ create_type:
     controller: Type\Infrastructure\Controller\Type\CreateTypeController
     methods: [ POST ]
 
+search_types:
+    path: /type/search
+    controller: Type\Infrastructure\Controller\Type\SearchTypeController
+    methods: [ GET ]
+
 get_type_by_id:
     path: /type/{id}
     controller: Type\Infrastructure\Controller\Type\GetTypeByIdController
