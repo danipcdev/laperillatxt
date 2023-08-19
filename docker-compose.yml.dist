@@ -50,6 +50,21 @@ services:
       - laperillatxt-network
     command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
 
+  laperillatxt-front:
+    build:
+      context: ./front-end/laperillatxt-front
+      dockerfile: Dockerfile
+    volumes:
+      - ./front-end/laperillatxt-front/.env.docker:/var/www/html/.env:delegated
+      - ./front-end/laperillatxt-front/vite.config.js.docker:/var/www/html/vite.config.js:delegated
+    depends_on:
+      - laperillatxt-web
+    ports:
+      - 4000:4000
+    networks:
+      - laperillatxt-network
+    command: ["yarn", "dev"]
+
 volumes:
   laperillatxt-db-data:
 
