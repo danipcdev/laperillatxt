@@ -14,3 +14,8 @@ services:
   Txt\Infrastructure\Controller\:
     resource: '../../src/Txt/Infrastructure/Controller/'
     tags: [ 'controller.service_arguments' ]
+
+
+  Txt\Infrastructure\Listener\JsonTransformerExceptionListener:
+    tags:
+      - { name: kernel.event_listener, event: kernel.exception, method: onKernelException, priority: 100 }

@@ -12,6 +12,8 @@ interface TxtRepository
 {
     public function findOneByIdOrFail(string $id): Txt;
 
+    public function findOneByTitle(string $title);
+
     public function search(TxtFilter $filter): PaginatedResponse;
 
     public function save(Txt $txt): void;

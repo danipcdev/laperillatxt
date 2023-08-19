@@ -34,6 +34,11 @@ readonly class DoctrineTxtRepository implements TxtRepository
         return $txt;
     }
 
+    public function findOneByTitle(string $title): ?Txt
+    {
+        return $this->repository->findOneBy(['title' => $title]);
+    }
+
     public function search(TxtFilter $filter): PaginatedResponse
     {
         $page = $filter->page;
