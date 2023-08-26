@@ -20,11 +20,11 @@ class RequestTransformer
 
     public function transform(Request $request): void
     {
-        if (self::ALLOWED_CONTENT_TYPE !== $request->headers->get('Content-Type')) {
-            throw InvalidArgumentException::createFromMessage(\sprintf('[%s] is the only Content-Type allowed', self::ALLOWED_CONTENT_TYPE));
-        }
-
         if (\in_array($request->getMethod(), self::METHODS_TO_DECODE, true)) {
+            if (self::ALLOWED_CONTENT_TYPE !== $request->headers->get('Content-Type')) {
+                throw InvalidArgumentException::createFromMessage(\sprintf('[%s] is the only Content-Type allowed', self::ALLOWED_CONTENT_TYPE));
+            }
+
             try {
                 $request->request = new ParameterBag((array) \json_decode($request->getContent(), true, 512, \JSON_THROW_ON_ERROR));
             } catch (\JsonException) {
