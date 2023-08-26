@@ -3,7 +3,7 @@
     <entity name="Txt\Domain\Model\Txt" table="txt">
         <id name="id" type="string" length="36"/>
         <field name="title" length="100"/>
-        <field name="text" length="500"/>
+        <field name="text" type="text"/>
         <many-to-one field="type" target-entity="Type\Domain\Model\Type" fetch="EAGER"/>
     </entity>
 </doctrine-mapping>

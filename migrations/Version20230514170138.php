@@ -21,7 +21,7 @@ final class Version20230514170138 extends AbstractMigration
                 CREATE TABLE `txt` (
                     `id` CHAR(36) PRIMARY KEY NOT NULL,
                     `title` VARCHAR(100) NOT NULL,
-                    `text` VARCHAR(500) NOT NULL,
+                    `text` TEXT NOT NULL,
                     INDEX IDX_txt_title (`title`)
                 );
             SQL

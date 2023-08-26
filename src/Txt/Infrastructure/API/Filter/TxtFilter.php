@@ -7,7 +7,7 @@ namespace Txt\Infrastructure\API\Filter;
 final class TxtFilter
 {
     private const PAGE = 1;
-    private const LIMIT = 10;
+    private const LIMIT = 9;
     private const ALLOWED_SORT_PARAMS = ['title'];
     private const ALLOWED_ORDER_PARAMS = ['asc', 'desc'];
 
