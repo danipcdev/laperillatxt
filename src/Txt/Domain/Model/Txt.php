@@ -12,7 +12,7 @@ class Txt
     public const TITLE_MAX_LENGTH = 40;
 
     private function __construct(
-        private readonly string $id,
+        private string $id,
         private string $title,
         private string $text,
         private Type $type,
@@ -27,6 +27,11 @@ class Txt
     public function id(): string
     {
         return $this->id;
+    }
+
+    public function setId(string $id): void
+    {
+        $this->id = $id;
     }
 
     public function title(): string
